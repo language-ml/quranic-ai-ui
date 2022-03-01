@@ -1,0 +1,78 @@
+@font-face {
+  font-family: 'iransansxv';
+  src: url('../fonts/IRANSansXV.woff') format('woff'),
+    /* will be the standard and works in Safari now */
+      url('../fonts/IRANSansXV.woff2') format('woff2');
+  /* for the other supporting browsers */
+  font-weight: 100 900;
+}
+/* iransans version 7.5 */
+
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: overlay;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body > div {
+  width: 100%;
+  height: 100%;
+}
+
+html::-webkit-scrollbar-track {
+  display: none;
+}
+
+html::-webkit-scrollbar-track-piece:start,
+html::-webkit-scrollbar-track-piece:end,
+html::-webkit-scrollbar * {
+  background: transparent;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+  z-index: 1000000;
+}
+
+html::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  transition: 300;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #45108a;
+  z-index: 1000000;
+  visibility: hidden;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  visibility: visible;
+}
+
+.fa-font-family {
+  -moz-font-feature-settings: 'ss02';
+  -webkit-font-feature-settings: 'ss02';
+  font-feature-settings: 'ss02';
+}
+
+.fa-font-family .Toastify__toast-body {
+  font-family: 'iransansxv';
+  -moz-font-feature-settings: 'ss02';
+  -webkit-font-feature-settings: 'ss02';
+  font-feature-settings: 'ss02';
+}
+
+.fa-font-family textarea {
+  font-family: 'iransansxv';
+  -moz-font-feature-settings: 'ss02';
+  -webkit-font-feature-settings: 'ss02';
+  font-feature-settings: 'ss02';
+}
