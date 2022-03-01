@@ -21,8 +21,6 @@ import '@fontsource/roboto/700.css';
 import 'src/assets/styles/globals.css';
 import { store } from 'src/app/store';
 
-export const APP_VERSION = '0.1.21';
-
 const App = ({ Component, pageProps }: AppProps) => {
   const { locale } = useRouter(),
     { t } = useTranslation();
