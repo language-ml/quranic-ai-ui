@@ -13,9 +13,32 @@
   src: url('../fonts/UthmanTaha.otf');
 }
 
-.taha {
+@font-face {
+  font-family: hafs;
+  src: url('../fonts/hafs.woff2');
+}
+
+.quran {
+  background: #f7fce3;
+  text-align: justify;
+  direction: rtl;
   font-family: UthmanTaha;
-  color: black;
+  display: inline;
+}
+
+.quran .aye {
+  display: inline;
+  font-family: UthmanTaha;
+}
+
+.quran .aye-number {
+  font-size: 0.9em;
+  white-space: nowrap;
+  color: #050;
+  cursor: pointer;
+  font-family: UthmanTaha;
+  display: inline;
+  margin-left: 5px;
 }
 
 .quranic-border {
