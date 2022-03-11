@@ -19,6 +19,6 @@ const allAyes: Aye[] = lines.map((line, index) => {
 
 export default (req: NextApiRequest, res: NextApiResponse<Aye[]>) => {
   const { pageNumber } = req.query;
-  const [startAye, length] = pageAyes[+pageNumber];
+  const [startAye, length] = pageAyes[+pageNumber - 1];
   res.status(200).json(allAyes.slice(startAye, startAye + length));
 };
