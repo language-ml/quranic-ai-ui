@@ -1,29 +1,76 @@
-import * as React from 'react';
+import { useState, FC } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { Box, Chip, InputAdornment } from '@mui/material';
+import { Box, IconButton, InputAdornment } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import { Search as SearchIcon } from '@mui/icons-material';
-import ChipCounter from 'src/components/atoms/chipCounter/ChipCounter';
+import { CounterChip } from '../counterChip/CounterChip';
 
-export default function Tags() {
+type SearchBoxProps = {
+  maxWeight?: number;
+  minWeight?: number;
+};
+
+type Film = {
+  title: string;
+  group: string;
+  year: number;
+  weight?: number;
+};
+
+export const SearchBox: FC<SearchBoxProps> = ({
+  maxWeight = 5,
+  minWeight = 0,
+}) => {
   const { t } = useTranslation();
+  const [inputValue, setInputValue] = useState('');
+  const [selectedOptions, setSelectedOptions] = useState<Film[]>([]);
+  const onChangeWeight = (inc: boolean, index: number) => {
+    const newSelectedOptions = [...selectedOptions];
+    const option = newSelectedOptions[index];
+    if (!option.weight) {
+      option.weight = 0;
+    }
+    if (inc && option.weight < maxWeight) {
+      option.weight++;
+    }
+    if (!inc && option.weight > minWeight) {
+      option.weight--;
+    }
+    setSelectedOptions(newSelectedOptions);
+  };
+  const submit = () => {
+    // alert('submit');
+  };
   return (
     <Box>
       <Autocomplete
         freeSolo
         disableClearable
+        value={selectedOptions}
         options={top100Films}
         getOptionLabel={(option) => option.title}
         groupBy={(option) => option.group}
         multiple
-        renderTags={(tagValue, getTagProps) =>
-          tagValue.map((option, index) => (
+        onChange={(e: any, val: any) => {
+          setSelectedOptions(val.filter((v: any) => typeof v !== 'string'));
+          if (val.length && typeof val[val.length - 1] === 'string') {
+            setInputValue(val[val.length - 1]);
+            submit();
+          }
+        }}
+        inputValue={inputValue}
+        onInputChange={(e: any, val: any) => setInputValue(val)}
+        renderTags={(_, getTagProps) =>
+          selectedOptions.map((option, index) => (
             // eslint-disable-next-line react/jsx-key
-            <Chip
+            <CounterChip
+              minWeight={minWeight}
+              maxWeight={maxWeight}
               label={option.title}
               {...getTagProps({ index })}
-              avatar={<ChipCounter />}
+              onChangeWeight={(inc) => onChangeWeight(inc, index)}
+              weight={option.weight || 0}
             />
           ))
         }
@@ -36,7 +83,9 @@ export default function Tags() {
               ...params.InputProps,
               endAdornment: (
                 <InputAdornment position="end">
-                  <SearchIcon />
+                  <IconButton onClick={() => submit()}>
+                    <SearchIcon />
+                  </IconButton>
                 </InputAdornment>
               ),
             }}
@@ -45,10 +94,10 @@ export default function Tags() {
       />
     </Box>
   );
-}
+};
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films: { title: string; group: string; year: number }[] = [
+const top100Films: Film[] = [
   { title: 'The Shawshank Redemption', group: 'g1', year: 1994 },
   { title: 'The Godfather', group: 'g2', year: 1972 },
   { title: 'The Godfather: Part II', group: 'g2', year: 1974 },

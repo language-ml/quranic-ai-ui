@@ -1,14 +1,12 @@
 import { GetStaticProps, NextPage } from 'next';
-import { useTranslation } from 'next-i18next';
 import Layout from 'src/components/templates/Layout';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import SearchBox from 'src/components/molecules/searchBox/SearchBox';
+import { SearchBox } from 'src/components/molecules/searchBox/SearchBox';
 import { Box, Container, Grid, IconButton, Paper, Stack } from '@mui/material';
 import { FilterList as FilterListIcon } from '@mui/icons-material';
 import QuranPage from 'src/components/organisms/quranPage/QuranPage';
 
 const Home: NextPage = () => {
-  const { t } = useTranslation('common');
   return (
     <Layout>
       <Container maxWidth="lg" sx={{ py: 2 }}>
