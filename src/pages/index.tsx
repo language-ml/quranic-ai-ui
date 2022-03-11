@@ -11,19 +11,10 @@ const Home: NextPage = () => {
   const { t } = useTranslation('common');
   return (
     <Layout>
-      <Container maxWidth="md" sx={{ py: 2 }}>
-        <Grid container spacing={2}>
+      <Container maxWidth="lg" sx={{ py: 2 }}>
+        <Grid container spacing={3}>
           <Grid item xs={12} sm={4}>
-            <Stack spacing={2}>
-              <QuranPage />
-              <Paper>
-                <Stack
-                  justifyContent="space-between"
-                  alignItems="center"
-                  direction="row"
-                ></Stack>
-              </Paper>
-            </Stack>
+            <QuranPage />
           </Grid>
           <Grid item xs={12} sm={8}>
             <Stack

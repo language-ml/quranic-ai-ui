@@ -26,16 +26,26 @@
   display: inline;
 }
 
-.quran .aye {
+.quran .aye * {
   display: inline;
   font-family: UthmanTaha;
+}
+
+.quran .aye {
+  background-color: #f7fce3;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.quran .aye:hover {
+  background-color: #dbf021;
+  transition: all 0.5s ease;
 }
 
 .quran .aye-number {
   font-size: 0.9em;
   white-space: nowrap;
   color: #050;
-  cursor: pointer;
   font-family: UthmanTaha;
   display: inline;
   margin-left: 5px;
