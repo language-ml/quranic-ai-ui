@@ -10,8 +10,8 @@ type AyeComponentProps = {
 const AyeComponent: FC<AyeComponentProps> = ({ aye, text }) => {
   return (
     <span className="aye">
-      <Typography variant="body2">{text}</Typography>
-      <Typography variant="body2" className="aye-number">
+      <Typography variant="body1">{text}</Typography>
+      <Typography variant="body1" className="aye-number">
         ‎﴿{toArabicNumber(aye)}﴾‏
       </Typography>
     </span>

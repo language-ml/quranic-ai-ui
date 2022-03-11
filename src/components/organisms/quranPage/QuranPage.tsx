@@ -19,11 +19,15 @@ const QuranPage: FC = () => {
   }, [page]);
 
   return (
-    <Stack spacing={2} alignItems="center" sx={{ position: 'sticky', top: 70 }}>
+    <Stack
+      spacing={2}
+      alignItems="center"
+      sx={{ position: 'sticky', top: 70, width: '100%' }}
+    >
       {ayes.length > 0 && (
         <Box>{sureList[ayes[ayes.length - 1].sureh - 1].name}</Box>
       )}
-      <Box className={clsx('quran', 'quranic-border')}>
+      <Box className={clsx('quran', 'quranic-border')} sx={{ width: '100%' }}>
         {ayes.map((aye: Aye, index: number) => (
           <AyeComponent key={index} aye={aye.aye} text={aye.text} />
         ))}
