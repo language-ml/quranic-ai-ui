@@ -13,8 +13,8 @@ const lines = fs
   .split(/\r?\n/);
 
 const allAyes: Aye[] = lines.map((line, index) => {
-  const [sureh, aye, text] = line.split('|');
-  return { sureh: +sureh, aye: +aye, text, index };
+  const [surah, aye, text] = line.split('|');
+  return { surah: +surah, aye: +aye, text, index };
 });
 
 export default (req: NextApiRequest, res: NextApiResponse<Aye[]>) => {

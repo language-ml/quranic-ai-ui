@@ -1,6 +1,6 @@
-export type Aye = { sureh: number; aye: number; text: string; index: number };
+export type Aye = { surah: number; aye: number; text: string; index: number };
 
-export const sureList = [
+export const surahList = [
   { name: 'الفاتحة', len: 7 },
   { name: 'البقرة', len: 286 },
   { name: 'آل عمران', len: 200 },
@@ -152,3 +152,23 @@ export const pageAyes = pagesLen.map((l) => {
   lastIndex += l;
   return res;
 });
+
+export const getPage = (surah: any, aye: number) => {
+  const sureIndex = surahList.indexOf(surah);
+  let index = aye - 1;
+  for (let i = 0; i < sureIndex; i++) {
+    index += surahList[i].len;
+  }
+  let page = Math.round(index / 10);
+  while (pageAyes[page][0] < index) page++;
+  while (true) {
+    if (pageAyes[page][0] > index) {
+      page--;
+    } else if (pageAyes[page][0] + pageAyes[page][1] < index) {
+      page++;
+    } else {
+      break;
+    }
+  }
+  return page + 1;
+};
