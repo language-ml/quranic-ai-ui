@@ -1,13 +1,12 @@
 import { Box, Pagination, Stack } from '@mui/material';
 import clsx from 'clsx';
 import { FC, useEffect, useState } from 'react';
-import Aye from 'src/components/molecules/aye/Aye';
-import { sureNames } from 'src/constants/quran';
-import { AyeRes } from 'src/pages/api/quran/page/[pageNumber]';
+import AyeComponent from 'src/components/molecules/aye/AyeComponent';
+import { Aye, sureList } from 'src/constants/quran';
 
 const QuranPage: FC = () => {
   const [page, setPage] = useState(1);
-  const [ayes, setAyes] = useState<AyeRes[]>([]);
+  const [ayes, setAyes] = useState<Aye[]>([]);
 
   useEffect(() => {
     fetch('api/quran/page/' + page)
@@ -20,13 +19,13 @@ const QuranPage: FC = () => {
   }, [page]);
 
   return (
-    <Stack spacing={2} alignItems="center">
+    <Stack spacing={2} alignItems="center" sx={{ position: 'sticky', top: 70 }}>
       {ayes.length > 0 && (
-        <Box>{sureNames[ayes[ayes.length - 1].surah - 1]}</Box>
+        <Box>{sureList[ayes[ayes.length - 1].sureh - 1].name}</Box>
       )}
       <Box className={clsx('quran', 'quranic-border')}>
-        {ayes.map((aye: AyeRes, index: number) => (
-          <Aye key={index} aye={aye.inSurah} text={aye.text} />
+        {ayes.map((aye: Aye, index: number) => (
+          <AyeComponent key={index} aye={aye.aye} text={aye.text} />
         ))}
       </Box>
       <Box>

@@ -2,17 +2,15 @@ import { Typography } from '@mui/material';
 import { FC } from 'react';
 import { toArabicNumber } from 'src/utils/translateNumberUtils';
 
-type AyeProps = {
+type AyeComponentProps = {
   aye: number;
   text: string;
 };
 
-const Aye: FC<AyeProps> = ({ aye, text }) => {
+const AyeComponent: FC<AyeComponentProps> = ({ aye, text }) => {
   return (
     <span className="aye">
-      <Typography variant="body2" className="aye">
-        {text}
-      </Typography>
+      <Typography variant="body2">{text}</Typography>
       <Typography variant="body2" className="aye-number">
         ‎﴿{toArabicNumber(aye)}﴾‏
       </Typography>
@@ -20,4 +18,4 @@ const Aye: FC<AyeProps> = ({ aye, text }) => {
   );
 };
 
-export default Aye;
+export default AyeComponent;
